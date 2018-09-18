@@ -1,11 +1,5 @@
 <ul>
   <% @tasks.each do |task| %>
-    <li><%= task %></li>
+    <li><%= task[:name] %></li>
   <% end %>
 </ul>
-
-<p>Here is a paragraph of text.</p>
-
-<h2>Heading2!</h2>
-<h3>heading 3</h3>
-<h4>header4</h4>
