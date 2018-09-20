@@ -1,0 +1,19 @@
+here's that 'ol edit page.
+
+
+
+<%= form_with model: @task do |f| %>
+<p>Edit a task!</p>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :description %>
+<%= f.text_field :description %>
+
+<%= f.label :completion_date %>
+<%= f.date_field :completion_date %>
+
+<%= f.submit "Submit Changes" %>
+
+<% end %>
