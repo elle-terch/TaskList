@@ -13,4 +13,9 @@ class TasksController < ApplicationController
       head :not_found
     end
   end
+
+  def new
+    @task = Task.new
+  end
+  
 end
