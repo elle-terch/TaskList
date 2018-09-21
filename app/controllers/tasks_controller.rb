@@ -13,15 +13,11 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = Task.new()
   end
 
   def create
-    @task = Task.new(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      completion_date: params[:task][:completion_date]
-    )
+    @task = Task.new(task_params)
 
     if @task.save
       redirect_to tasks_path
@@ -31,22 +27,15 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = Task.find_by(id: params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
-    @task.update(
-      name: params[:task][:name],
-      description: params[:task][:description],
-      completion_date: params[:task][:completion_date]
+    task = Task.find_by(id: params[:id])
+    task.update(task_params
     )
 
-    if @task.save
-      redirect_to task_path
-    else
-      render :new
-    end
+    redirect_to task_path(task.id)
   end
 
   def delete
@@ -57,7 +46,17 @@ class TasksController < ApplicationController
 
   def update_status
     task = Task.find_by(id: params[:id])
-    task.completion_date = Date.today
+    task.update(completion_date: params[:task][:completion_date])
+
+    if task.update
+      redirect_to task_path(task.id)
+    end
+  end
+
+  private
+
+  def task_params
+    return params.require(:task).permit(:name, :description, :completion_date)
   end
 
 end
