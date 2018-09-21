@@ -1,5 +1,3 @@
-TASKS = ["walk dog", "brush teeth", "empty dishwasher", "pay student loans", "go for a run", "sleeeeeep"]
-
 
 class TasksController < ApplicationController
   def index
@@ -7,7 +5,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    task_id = params[:id].to_i
+    task_id = params[:id]
     @task = Task.find(task_id)
     if @task.nil?
       head :not_found
@@ -49,6 +47,12 @@ class TasksController < ApplicationController
     else
       render :new
     end
+  end
+
+  def delete
+    task = Task.find_by(id: params[:id])
+    task.destroy
+    redirect_to tasks_path
   end
 
 end
