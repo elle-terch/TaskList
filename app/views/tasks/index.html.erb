@@ -2,8 +2,13 @@
   <% @tasks.each do |task| %>
     <li><%= task[:name] %> &nbsp; &nbsp; &nbsp;
       <%= link_to "View Details", task_path(task.id) %>
-      
+
       <%= link_to "Delete", task_path(task), method: :delete, data: { confirm: "are you sure you want to delete #{task}?" } %></li>
+
+      <%= link_to "Mark Complete", task_path(task), method: :patch %>
+
+      <%= link_to "edit task", edit_task_path(task.id) %>
+
 
   <% end %>
 </ul>

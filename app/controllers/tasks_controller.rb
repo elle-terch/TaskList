@@ -55,4 +55,9 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
+  def update_status
+    task = Task.find_by(id: params[:id])
+    task.completion_date = Date.today
+  end
+
 end
