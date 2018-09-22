@@ -48,13 +48,17 @@ class TasksController < ApplicationController
 
   def update_status
     task = Task.find_by(id: params[:id])
-    task.update(completion_date: Date.today)
+    if task.completion_date == nil
+      task.update(completion_date: Date.today)
+    else
+      task.update(completion_date: nil)
+    end
 
-    # if task.update
-    #   redirect_to task_path(task.id)
-    # end
+    if task.update(id: params[:id])
+      redirect_to task_path(task.id)
+    end
   end
-
+##display logic: if task.completion_date != nil, then display class is x? vs. y?
 
   private
 

@@ -5,7 +5,17 @@
 
     <%= link_to "Delete", task_path(task), method: :delete, data: { confirm: "are you sure you want to delete #{task.name}?" } %>
 
+
+
+    <p>task completion date: <%= task[:completion_date] %></p>
+
+    <% if task[:completion_date] == nil %>
     <%= link_to "Mark Complete", update_status_task_path(task.id), method: :patch %>
+    <% else %>
+    <%= link_to "Mark Incomplete", update_status_task_path(task.id), method: :patch %>
+    <%= "hi" %>
+    <% end %>
+
 
 
     <%= link_to "edit task", edit_task_path(task.id) %>
