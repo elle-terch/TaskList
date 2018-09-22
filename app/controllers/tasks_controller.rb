@@ -32,8 +32,7 @@ class TasksController < ApplicationController
 
   def update
     task = Task.find_by(id: params[:id])
-    task.update(task_params
-    )
+    task.update(task_params)
 
     redirect_to task_path(task.id)
   end
@@ -46,12 +45,13 @@ class TasksController < ApplicationController
 
   def update_status
     task = Task.find_by(id: params[:id])
-    task.update(completion_date: params[:task][:completion_date])
+    task.update(completion_date: Date.today)
 
-    if task.update
-      redirect_to task_path(task.id)
-    end
+    # if task.update
+    #   redirect_to task_path(task.id)
+    # end
   end
+
 
   private
 
