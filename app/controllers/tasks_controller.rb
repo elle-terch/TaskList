@@ -32,9 +32,12 @@ class TasksController < ApplicationController
 
   def update
     task = Task.find_by(id: params[:id])
-    task.update(task_params)
+    if task.update(task_params)
 
-    redirect_to task_path(task.id)
+      redirect_to task_path(task.id)
+    else
+      render :edit
+    end
   end
 
   def delete
