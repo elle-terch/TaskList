@@ -1,27 +1,31 @@
+<h2>all tasks</h2>
+
 <ul>
-  <% @tasks.each do |task| %>
-  <li><%= task[:name] %> &nbsp; &nbsp; &nbsp;
-    <%= link_to "View Details", task_path(task.id) %>
 
-    <%= link_to "Delete", task_path(task), method: :delete, data: { confirm: "are you sure you want to delete #{task.name}?" } %>
+  <% @tasks.all.order(:id).each do |task| %>
+  <li>
 
+    <p><%= task[:name] %></p>
 
+    <div class = "options">
 
-    <p>task completion date: <%= task[:completion_date] %></p>
+      <% if task[:completion_date] == nil %>
+        <%= link_to "mark complete", update_status_task_path(task.id), method: :patch %>
 
-    <% if task[:completion_date] == nil %>
-    <%= link_to "Mark Complete", update_status_task_path(task.id), method: :patch %>
-    <% else %>
-    <%= link_to "Mark Incomplete", update_status_task_path(task.id), method: :patch %>
-    <%= "hi" %>
-    <% end %>
+        <% else %>
 
+        <%= link_to "mark incomplete", update_status_task_path(task.id), class: "strike", method: :patch %>
+      <% end %>
 
 
-    <%= link_to "edit task", edit_task_path(task.id) %>
+      <%= link_to "view details", task_path(task.id) %>
+
+      <%= link_to "edit task", edit_task_path(task.id) %>
+
+      <%= link_to "delete", task_path(task), class: "delete", method: :delete, data: { confirm: "are you sure you want to delete #{task.name}?"} %>
+
+    </div>
 
   </li>
   <% end %>
 </ul>
-
-<%= link_to "Add Task", new_task_path %>

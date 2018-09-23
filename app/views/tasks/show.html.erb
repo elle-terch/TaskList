@@ -1,9 +1,5 @@
-<h3>here is task # <%= @task[:id] %></h3>
-<%= @task[:name] %>
+<h2>Task: <%= @task[:name]%></h2>
 
-<p>Task description: <%= @task[:description] %></p>
+<p class = "task-details">Task description: <%= @task[:description] %></p>
 
 <p>completed date: <%= @task[:completion_date] %></p>
-
-
-<%= link_to "edit task", edit_task_path %>

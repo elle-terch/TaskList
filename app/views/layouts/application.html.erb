@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>TaskList</title>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya|Fjalla+One|Lato|Merriweather|Montserrat|Noto+Sans" rel="stylesheet">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,18 +11,27 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <div class = "container">
   <body>
-    <h1>Tasks for the day</h1>
 
-    <%= yield %>
-    <header>
+
+    <header class = "header">
+      <h1>My Tasklist</h1>
     </header>
 
-    <main>
+    <div class = "sidebar" >
+      <%= link_to "view all tasks", tasks_path, class: "button" %>
+      <%= link_to "add new task", new_task_path, class: "button" %>
+    </div>
+
+    <main class = "main">
+      <%= yield %>
     </main>
 
-    <footer>
+    <footer class = "footer">
+      <p>copyright 2018</p>
     </footer>
+  </div>
 
   </body>
 </html>

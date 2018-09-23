@@ -1,16 +1,20 @@
+<div class = "form" >
 
-<%= form_with model: @task do |f| %>
-<p>Add a task!</p>
+  <%= form_with model: @task do |f| %>
+    <p>Add a task</p>
 
-<%= f.label :name %>
-<%= f.text_field :name %>
+    <div class = "field"><%= f.label :name %>
+    <%= f.text_field :name %></div>
 
-<%= f.label :description %>
-<%= f.text_field :description %>
+    <div class = "field"><%= f.label :description %>
+    <%= f.text_field :description %></div>
 
-<%= f.label :completion_date %>
-<%= f.date_field :completion_date %>
+    <div class = "field">
+      <%= f.label :completion_date %>
+      <%= f.date_field :completion_date %></div>
 
-<%= f.submit "Add Task" %>
+    <%= f.submit "Add Task" %>
 
-<% end %>
+  <% end %>
+
+</div>
