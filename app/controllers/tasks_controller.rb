@@ -40,7 +40,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     task = Task.find_by(id: params[:id])
     task.destroy
     redirect_to tasks_path
@@ -55,10 +55,9 @@ class TasksController < ApplicationController
     end
 
     if task.update(id: params[:id])
-      redirect_to task_path(task.id)
+      redirect_to tasks_path
     end
   end
-##display logic: if task.completion_date != nil, then display class is x? vs. y?
 
   private
 
